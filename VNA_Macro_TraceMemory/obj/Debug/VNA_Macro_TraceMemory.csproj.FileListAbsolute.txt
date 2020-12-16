@@ -1,0 +1,8 @@
+C:\Users\moalliso\source\repos\VNA_Macro_TraceMemory\VNA_Macro_TraceMemory\bin\Debug\VNA_Macro_TraceMemory.exe.config
+C:\Users\moalliso\source\repos\VNA_Macro_TraceMemory\VNA_Macro_TraceMemory\bin\Debug\VNA_Macro_TraceMemory.exe
+C:\Users\moalliso\source\repos\VNA_Macro_TraceMemory\VNA_Macro_TraceMemory\bin\Debug\VNA_Macro_TraceMemory.pdb
+C:\Users\moalliso\source\repos\VNA_Macro_TraceMemory\VNA_Macro_TraceMemory\obj\Debug\VNA_Macro_TraceMemory.csprojAssemblyReference.cache
+C:\Users\moalliso\source\repos\VNA_Macro_TraceMemory\VNA_Macro_TraceMemory\obj\Debug\VNA_Macro_TraceMemory.csproj.ResolveComReference.cache
+C:\Users\moalliso\source\repos\VNA_Macro_TraceMemory\VNA_Macro_TraceMemory\obj\Debug\VNA_Macro_TraceMemory.csproj.CoreCompileInputs.cache
+C:\Users\moalliso\source\repos\VNA_Macro_TraceMemory\VNA_Macro_TraceMemory\obj\Debug\VNA_Macro_TraceMemory.exe
+C:\Users\moalliso\source\repos\VNA_Macro_TraceMemory\VNA_Macro_TraceMemory\obj\Debug\VNA_Macro_TraceMemory.pdb
