@@ -23,11 +23,6 @@ namespace VNA_Macro_TraceMemory
             //Get list of VISA resources from Connection Expert
             string[] resourceList = rm.FindRsrc("?*");
             
-            //foreach (string str in resourceList)
-            //{
-            //    Console.WriteLine(str);
-            //}
-            
             //If no cmd line arg for VISA address is used, assume localhost @ hislip0
             if (args.Length == 0)
             {
@@ -41,14 +36,16 @@ namespace VNA_Macro_TraceMemory
                 //See if cmd line arg is in the list of VISA addresses
                 foreach (string str in resourceList)
                 {
+                    //If there is a match, print it out and set the validVISAAddress flag to true
                     if (args[0].Contains(str))
                     {
                         Console.WriteLine("We have a match.");
                         validVISAAddress = true;
+                        break;
                     }
                 }
-                //Console.ReadLine();
 
+                //Use the cmd line argument if there is a match
                 if (validVISAAddress == true)
                 {
                     vna.IO = (IMessage)rm.Open(args[0]);
@@ -58,7 +55,6 @@ namespace VNA_Macro_TraceMemory
                     Trace.TraceError("Invalid VISA address selected.");
                     System.Environment.Exit(1);
                 }
-
             }
             vna.IO.Timeout = 5000;
 
