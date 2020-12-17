@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using Ivi.Visa.Interop;
 
 namespace VNA_Macro_TraceMemory
@@ -11,12 +12,54 @@ namespace VNA_Macro_TraceMemory
     {
         static void Main(string[] args)
         {
+            //Status/Error Logging
+            Trace.Listeners.Add(new TextWriterTraceListener("logFile.log"));
+
+            //Prepare VISA ecosystem
             ResourceManager rm = new ResourceManager();
             FormattedIO488 vna = new FormattedIO488();
             int readLimit = 1024;
 
+            //Get list of VISA resources from Connection Expert
+            string[] resourceList = rm.FindRsrc("?*");
+            
+            //foreach (string str in resourceList)
+            //{
+            //    Console.WriteLine(str);
+            //}
+            
+            //If no cmd line arg for VISA address is used, assume localhost @ hislip0
+            if (args.Length == 0)
+            {
+                vna.IO = (IMessage)rm.Open("TCPIP0::localhost::hislip0::INSTR");
+            }
 
-            vna.IO = (IMessage)rm.Open("TCPIP0::localhost::hislip0::INSTR");
+            //If cmd line arg for VISA address has been added, check it
+            else if (args.Length == 1)
+            {
+                bool validVISAAddress = false;
+                //See if cmd line arg is in the list of VISA addresses
+                foreach (string str in resourceList)
+                {
+                    if (args[0].Contains(str))
+                    {
+                        Console.WriteLine("We have a match.");
+                        validVISAAddress = true;
+                    }
+                }
+                //Console.ReadLine();
+
+                if (validVISAAddress == true)
+                {
+                    vna.IO = (IMessage)rm.Open(args[0]);
+                }
+                else
+                {
+                    Trace.TraceError("Invalid VISA address selected.");
+                    System.Environment.Exit(1);
+                }
+
+            }
             vna.IO.Timeout = 5000;
 
             //Get list of active channels from VNA
